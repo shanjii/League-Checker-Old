@@ -1,12 +1,15 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="android:windowBackground">
-            @drawable/background_splash
-        </item>
-        <item name="android:textColor">#add8e6</item>
-    </style>
-
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<!-- Customize your theme here. -->
+		<item name="android:windowBackground">
+			@drawable/background_splash
+		</item>
+		<item name="colorPrimaryDark">
+			#add8e6
+		</item>
+		<item name="android:textColor">
+			#add8e6
+		</item>
+	</style>
 </resources>
