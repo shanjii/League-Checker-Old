@@ -28,8 +28,14 @@ class Search extends Component {
             region: 'BR1',
             iconregion: 'BR',
             easteregg: 0,
-            apikey: ''
-
+            apikey: '',
+            champData: [],
+            maestria1: [],
+            maestria2: [],
+            maestria3: [],
+            champMaestria1: [],
+            champMaestria2: [],
+            champMaestria3: []
         }
     }
 
@@ -104,9 +110,52 @@ class Search extends Component {
                         this.setState({ winratesolo: Math.round((this.state.ranksolo.wins / (this.state.ranksolo.wins + this.state.ranksolo.losses)) * 100) })
                     }
                 }
-                this._loadingend();
+                this._searchChampions();
             })
     };
+
+    _searchChampions = async () => {
+
+        await fetch('https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + this.state.summonerid, {
+            method: 'GET',
+            headers: {
+                "Origin": "https://developer.riotgames.com",
+                "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
+                "X-Riot-Token": `${this.state.apikey}`,
+                "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"
+            }
+        })
+            .then(resposta => resposta.json())
+            .then(response => {
+                this.setState({ maestria1: response[0] })
+                this.setState({ maestria2: response[1] })
+                this.setState({ maestria3: response[2] })
+                console.warn(this.state.maestria1)
+                console.warn(this.state.maestria2)
+                console.warn(this.state.maestria3)
+            })
+        await fetch('http://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/champion.json')
+            .then(resposta => resposta.json())
+            .then(response => {
+
+                Object.entries(response.data).forEach(element => {
+                    if (element[1].key == this.state.maestria1.championId) {
+                        this.setState({ champMaestria1: element[1] })
+                    }
+                    if (element[1].key == this.state.maestria2.championId) {
+                        this.setState({ champMaestria2: element[1] })
+                    }
+                    if (element[1].key == this.state.maestria3.championId) {
+                        this.setState({ champMaestria3: element[1] })
+                    }
+                });
+                // console.warn(Object.entries(response.data))
+                // console.warn(response.data)
+            })
+
+        this._loadingend();
+    }
 
     _loadingstart = () => {
         this.setState({ loading: 1 })
@@ -511,13 +560,27 @@ class Search extends Component {
                                                                             </View>
                                                                         )}
                                                                 </View>
-
                                                             </View>
                                                         )
                                                         :
                                                         (
                                                             <View />
                                                         )}
+                                                    <View style={{ marginTop: 20, backgroundColor: "white", height: 560, marginLeft: 20, marginRight: 20, borderRadius: 20, marginBottom: 20 }}>
+                                                        <View style={{ marginLeft: 30, alignSelf: "center", marginRight: 30, marginBottom: 20 }}>
+                                                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Maestrias</Text>
+                                                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.champMaestria1.name}</Text>
+                                                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.maestria1.championPoints}</Text>
+                                                        </View>
+                                                        <View style={{ marginLeft: 30, alignSelf: "center", marginRight: 30, marginBottom: 20 }}>
+                                                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.champMaestria2.name}</Text>
+                                                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.maestria2.championPoints}</Text>
+                                                        </View>
+                                                        <View style={{ marginLeft: 30, alignSelf: "center", marginRight: 30, marginBottom: 20 }}>
+                                                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.champMaestria3.name}</Text>
+                                                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.maestria3.championPoints}</Text>
+                                                        </View>
+                                                    </View>
                                                 </FadeInView>
                                             )}
                                     </View>
