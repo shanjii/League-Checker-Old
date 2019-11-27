@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Text, View, StyleSheet, StatusBar, SafeAreaView, Header, Image, ScrollView, TouchableWithoutFeedback, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, StatusBar, Header, Image, ScrollView, TouchableWithoutFeedback, TouchableOpacity, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
@@ -9,6 +9,8 @@ import Region from '../components/region'
 import Ranksolo from '../components/ranksolo'
 import Rankflex from '../components/rankflex'
 import Maestria from '../components/maestria'
+import * as Animatable from 'react-native-animatable';
+
 
 
 class Search extends Component {
@@ -22,7 +24,7 @@ class Search extends Component {
         super();
         this.state = {
             level: '',
-            text: 'Shanji',
+            text: '',
             name: '',
             summonerid: '',
             ranksolo: '',
@@ -120,7 +122,7 @@ class Search extends Component {
 
     _searchChampions = async () => {
 
-        await fetch('https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + this.state.summonerid, {
+        await fetch('https://'+ this.state.region + '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + this.state.summonerid, {
             method: 'GET',
             headers: {
                 "Origin": "https://developer.riotgames.com",
@@ -136,7 +138,7 @@ class Search extends Component {
                 this.setState({ maestria2: response[1] })
                 this.setState({ maestria3: response[2] })
             })
-        await fetch('http://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/champion.json')
+        await fetch('https://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/champion.json')
             .then(resposta => resposta.json())
             .then(response => {
 
@@ -194,6 +196,7 @@ class Search extends Component {
         this.setState({ winratesolo: 0 })
         this.setState({ winrateflex: 0 })
         this.setState({ easteregg: 0 })
+        console.warn(this.state.iconregion)
 
     }
 
@@ -224,17 +227,17 @@ class Search extends Component {
                 <StatusBar backgroundColor="lightblue" />
                 <View>
                     {/* Logo */}
-                    <View style={{ marginTop: 40 }}>
+                    <Animatable.View animation="wobble" style={{ marginTop: 40, }}>
                         <TouchableWithoutFeedback onPress={this._contador} >
-                            <Image source={require("../assets/gnar.png")} style={{ alignSelf: "center", width: 100, height: 100, }} />
+                        <Image source={require("../assets/gnar.png")} style={{ alignSelf: "center", width: 100, height: 100, borderRadius: 100, borderWidth:2, borderColor: "black" }} />
                         </TouchableWithoutFeedback >
-                    </View>
+                    </Animatable.View>
 
                     {/* Title */}
-                    <Text style={{ color: "white", fontSize: 35, textAlign: "center", marginTop: 20, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>League Checker</Text>
+                        <Text style={{ color: "white", fontSize: 35, textAlign: "center", marginTop: 20, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>League Checker</Text>
 
                     {/* Delete */}
-                    <TouchableOpacity style={{ position: "relative", left: 350, top: 54 }} onPress={this._reset} >
+                    <TouchableOpacity style={{ position: "relative", left: "82%", top: 54 }} onPress={this._reset} >
                         <Image source={require("../assets/delete.png")} style={{ width: 25, height: 25 }} />
                     </TouchableOpacity >
 
@@ -243,12 +246,12 @@ class Search extends Component {
                         <TextInput
                             onChangeText={(text) => this.setState({ text })}
                             value={this.state.text}
-                            style={{ fontSize: 20, textAlign: "center", fontFamily: "Friz-Quadrata-Regular", color: "white", borderBottomWidth: 1, borderBottomColor: "white", width: 300, alignSelf: "center", marginTop: 10, height: 50, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}
+                            style={{ fontSize: 20, textAlign: "center", fontFamily: "Friz-Quadrata-Regular", color: "white", borderBottomWidth: 1, borderBottomColor: "white", width: "60%", alignSelf: "center", marginTop: 10, height: 50, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}
                         />
                     </View>
 
                     {/* Search Button */}
-                    <View style={{ marginTop: 30, width: 200, alignSelf: "center", }}>
+                    <Animatable.View animation="rubberBand" style={{ marginTop: 30, width: 200, alignSelf: "center", }}>
                         {(this.state.text !== '') ?
                             (
                                 <Button color="white" onPress={this._search} mode="contained">
@@ -259,7 +262,7 @@ class Search extends Component {
                                 <Text style={{ color: "white", fontSize: 15, textAlign: "center", marginTop: 0, textShadowColor: 'rgba(0, 0, 0, 0.5)', fontFamily: "Friz-Quadrata-Regular", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Digite o nome do Invocador</Text>
 
                             )}
-                    </View>
+                    </Animatable.View>
 
                     {/* Region */}
                     <Region regionBR={this._setregionBR} regionEUW={this._setregionEUW} icon={this.state.iconregion} />
@@ -268,6 +271,7 @@ class Search extends Component {
                     <Fragment>
                         {(this.state.name !== '') ?
                             (
+
                                 // Informações do usuário
                                 <Fragment>
                                     {(this.state.loading === 1) ?
@@ -278,49 +282,52 @@ class Search extends Component {
                                         )
                                         :
                                         (
-                                            <View style={{ marginTop: 30, marginLeft: 0, marginRight: 0, backgroundColor: "rgba(255, 255, 255, 0.4)", marginBottom: 0, borderTopLeftRadius: 70, borderBottomLeftRadius: 70, borderTopRightRadius: 8, borderBottomRightRadius: 8 }}>
+                                            <Animatable.View style={{ marginTop: 0 }} animation="zoomInDown">
 
-                                                {/* Perfil */}
-                                                <Profile regiao={this.state.region} nome={this.state.name} nivel={this.state.level} />
+                                                <View style={{ marginTop: 30, marginLeft: 0, marginRight: 0, backgroundColor: "rgba(255, 255, 255, 0.4)", marginBottom: 0, borderTopLeftRadius: 70, borderBottomLeftRadius: 70, borderTopRightRadius: 8, borderBottomRightRadius: 8 }}>
 
-                                                {/* Rank Solo */}
-                                                <Fragment>
-                                                    {(this.state.ranksolo !== '') ?
-                                                        (
-                                                            <Ranksolo solotier={this.state.ranksolo.tier} solorank={this.state.ranksolo.rank} sololeaguepoints={this.state.ranksolo.leaguePoints} solowins={this.state.ranksolo.wins} sololosses={this.state.ranksolo.losses} solowinrate={this.state.winratesolo} />
-                                                        )
-                                                        :
-                                                        (
-                                                            <View />
-                                                        )
-                                                    }
-                                                </Fragment>
+                                                    {/* Perfil */}
+                                                    <Profile regiao={this.state.region} nome={this.state.name} nivel={this.state.level} />
 
-                                                {/* Rank Flex */}
-                                                <Fragment>
-                                                    {(this.state.rankflex !== '') ?
-                                                        (
-                                                            <Rankflex flextier={this.state.rankflex.tier} flexrank={this.state.rankflex.rank} flexleaguepoints={this.state.rankflex.leaguePoints} flexwins={this.state.rankflex.wins} flexlosses={this.state.rankflex.losses} flexwinrate={this.state.winrateflex} />
-                                                        )
-                                                        :
-                                                        (
-                                                            <View />
-                                                        )}
-                                                </Fragment>
+                                                    {/* Rank Solo */}
+                                                    <Fragment>
+                                                        {(this.state.ranksolo !== '') ?
+                                                            (
+                                                                <Ranksolo solotier={this.state.ranksolo.tier} solorank={this.state.ranksolo.rank} sololeaguepoints={this.state.ranksolo.leaguePoints} solowins={this.state.ranksolo.wins} sololosses={this.state.ranksolo.losses} solowinrate={this.state.winratesolo} />
+                                                            )
+                                                            :
+                                                            (
+                                                                <View />
+                                                            )
+                                                        }
+                                                    </Fragment>
 
-                                                {/* Maestria */}
-                                                <Fragment>
-                                                    {(this.state.name !== 'Não encontrado') ?
-                                                        (
-                                                            <Maestria maestria1={this.state.maestria1} maestria2={this.state.maestria2} maestria3={this.state.maestria3} champMaestria1={this.state.champMaestria1} champMaestria2={this.state.champMaestria2} champMaestria3={this.state.champMaestria3} />
-                                                        )
-                                                        :
-                                                        (
-                                                            <View />
-                                                        )
-                                                    }
-                                                </Fragment>
-                                            </View>
+                                                    {/* Rank Flex */}
+                                                    <Fragment>
+                                                        {(this.state.rankflex !== '') ?
+                                                            (
+                                                                <Rankflex flextier={this.state.rankflex.tier} flexrank={this.state.rankflex.rank} flexleaguepoints={this.state.rankflex.leaguePoints} flexwins={this.state.rankflex.wins} flexlosses={this.state.rankflex.losses} flexwinrate={this.state.winrateflex} />
+                                                            )
+                                                            :
+                                                            (
+                                                                <View />
+                                                            )}
+                                                    </Fragment>
+
+                                                    {/* Maestria */}
+                                                    <Fragment>
+                                                        {(this.state.name !== 'Não encontrado') ?
+                                                            (
+                                                                <Maestria maestria1={this.state.maestria1} maestria2={this.state.maestria2} maestria3={this.state.maestria3} champMaestria1={this.state.champMaestria1} champMaestria2={this.state.champMaestria2} champMaestria3={this.state.champMaestria3} />
+                                                            )
+                                                            :
+                                                            (
+                                                                <View />
+                                                            )
+                                                        }
+                                                    </Fragment>
+                                                </View>
+                                            </Animatable.View>
                                         )}
                                 </Fragment>
                             )

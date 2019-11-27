@@ -16,7 +16,7 @@ class Profile extends Component {
 
                             <Image
                                 style={{ width: 100, height: 100, borderRadius: 50,borderWidth: 3, borderColor: "black" }}
-                                source={{ uri: 'http://avatar.leagueoflegends.com/' + this.props.regiao + '/' + this.props.nome + '.png' }}
+                                source={{ uri: 'https://avatar.leagueoflegends.com/' + this.props.regiao + '/' + this.props.nome + '.png' }}
                             />
                         </View>
                         <View style={{marginLeft: 10, marginRight:20}}>

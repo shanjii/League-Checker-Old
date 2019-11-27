@@ -18,6 +18,18 @@ class Region extends Component {
                             source={require("../assets/BR.png")}
                             style={{ width: 50, height: 50, borderRadius: 50 }}
                         />
+                        {(this.props.icon === "BR") ?
+                            (
+                                <Image
+                                    style={{ width: 50, height: 50 }}
+                                    source={require("../assets/arrowup.gif")}
+                                />
+                            )
+                            :
+                            (
+                                <View />
+                            )
+                        }
                     </TouchableOpacity>
                     <View style={{ marginLeft: 10, marginRight: 10 }} />
                     <TouchableOpacity
@@ -27,24 +39,22 @@ class Region extends Component {
                             source={require("../assets/EU.png")}
                             style={{ width: 50, height: 50, borderRadius: 50 }}
                         />
+                        {(this.props.icon === "EUW") ?
+                            (
+                                <Image
+                                    style={{ width: 50, height: 50 }}
+                                    source={require("../assets/arrowup.gif")}
+                                />
+                                
+                            )
+                            :
+                            (
+                                <View />
+                            )
+                        }
                     </TouchableOpacity>
                 </View>
-                {
-                    (this.props.icon === "BR") ?
-                        (
-                            <View style={{ flexDirection: "row", alignSelf: "center" }}>
-                                <Text style={{ color: "white", fontSize: 20, textAlign: "center", marginTop: 20, textShadowColor: 'rgba(0, 0, 0, 0.5)', fontFamily: "Friz-Quadrata-Regular", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Região selecionada: </Text>
-                                <Text style={{ color: "green", fontSize: 20, textAlign: "center", marginTop: 20, textShadowColor: 'rgba(0, 0, 0, 0.5)', fontFamily: "Friz-Quadrata-Regular", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.icon}</Text>
-                            </View>
-                        )
-                        :
-                        (
-                            <View style={{ flexDirection: "row", alignSelf: "center" }}>
-                                <Text style={{ color: "white", fontSize: 20, textAlign: "center", marginTop: 20, textShadowColor: 'rgba(0, 0, 0, 0.5)', fontFamily: "Friz-Quadrata-Regular", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Região selecionada: </Text>
-                                <Text style={{ color: "blue", fontSize: 20, textAlign: "center", marginTop: 20, textShadowColor: 'rgba(0, 0, 0, 0.5)', fontFamily: "Friz-Quadrata-Regular", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.icon}</Text>
-                            </View>
-                        )
-                }
+
             </Fragment>
         )
     }

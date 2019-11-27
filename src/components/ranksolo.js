@@ -90,7 +90,7 @@ class Ranksolo extends Component {
                             <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Divisão: </Text>
                             <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solorank}</Text>
                         </View>
-                        <View style={{ marginLeft: 50, flexDirection: "row", marginRight: 0 }}>
+                        <View style={{ marginLeft: 30, flexDirection: "row", marginRight: 0 }}>
                             <Text style={{ color: "green", fontSize: 20, marginLeft: 0, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Pontos: {this.props.sololeaguepoints}</Text>
                         </View>
                         <View style={{ marginLeft: 30, marginTop: 6, flexDirection: "row", marginRight: 30 }}>
