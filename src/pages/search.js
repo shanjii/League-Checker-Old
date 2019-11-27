@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Text, View, StyleSheet, StatusBar, AsyncStorage, SafeAreaView, Header, Image, ScrollView, TouchableWithoutFeedback, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, View, StyleSheet, StatusBar, SafeAreaView, Header, Image, ScrollView, TouchableWithoutFeedback, TouchableOpacity, ActivityIndicator } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
 import FadeInView from 'react-native-fade-in-view';
@@ -21,7 +22,7 @@ class Search extends Component {
         super();
         this.state = {
             level: '',
-            text: '',
+            text: 'Shanji',
             name: '',
             summonerid: '',
             ranksolo: '',
@@ -277,7 +278,7 @@ class Search extends Component {
                                         )
                                         :
                                         (
-                                            <FadeInView duration={1000} style={{ marginTop: 30, marginLeft: 10, marginRight: 10, backgroundColor: "rgba(255, 255, 255, 0.5)", marginBottom: 20, borderRadius: 20 }}>
+                                            <View style={{ marginTop: 30, marginLeft: 0, marginRight: 0, backgroundColor: "rgba(255, 255, 255, 0.4)", marginBottom: 0, borderTopLeftRadius: 70, borderBottomLeftRadius: 70, borderTopRightRadius: 8, borderBottomRightRadius: 8 }}>
 
                                                 {/* Perfil */}
                                                 <Profile regiao={this.state.region} nome={this.state.name} nivel={this.state.level} />
@@ -312,21 +313,6 @@ class Search extends Component {
                                                     {(this.state.name !== 'Não encontrado') ?
                                                         (
                                                             <Maestria maestria1={this.state.maestria1} maestria2={this.state.maestria2} maestria3={this.state.maestria3} champMaestria1={this.state.champMaestria1} champMaestria2={this.state.champMaestria2} champMaestria3={this.state.champMaestria3} />
-                                                            // <View style={{ marginTop: 20, backgroundColor: "white", height: 560, marginLeft: 20, marginRight: 20, borderRadius: 20, marginBottom: 20 }}>
-                                                            //     <View style={{ marginLeft: 30, alignSelf: "center", marginRight: 30, marginBottom: 20 }}>
-                                                            //         <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Maestrias</Text>
-                                                            //         <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.champMaestria1.name}</Text>
-                                                            //         <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.maestria1.championPoints}</Text>
-                                                            //     </View>
-                                                            //     <View style={{ marginLeft: 30, alignSelf: "center", marginRight: 30, marginBottom: 20 }}>
-                                                            //         <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.champMaestria2.name}</Text>
-                                                            //         <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.maestria2.championPoints}</Text>
-                                                            //     </View>
-                                                            //     <View style={{ marginLeft: 30, alignSelf: "center", marginRight: 30, marginBottom: 20 }}>
-                                                            //         <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.champMaestria3.name}</Text>
-                                                            //         <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.state.maestria3.championPoints}</Text>
-                                                            //     </View>
-                                                            // </View>
                                                         )
                                                         :
                                                         (
@@ -334,7 +320,7 @@ class Search extends Component {
                                                         )
                                                     }
                                                 </Fragment>
-                                            </FadeInView>
+                                            </View>
                                         )}
                                 </Fragment>
                             )

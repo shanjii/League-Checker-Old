@@ -5,15 +5,16 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 class Ranksolo extends Component {
     render() {
         return (
-            <View style={{ marginTop: 20, backgroundColor: "white", height: 560, marginLeft: 20, marginRight: 20, borderRadius: 20, marginBottom: 20 }}>
+            <View style={{ marginTop: 0, backgroundColor: "white", height: 250, marginLeft: 10, marginRight: 10, borderRadius: 30, marginBottom: 20, shadowOffset: { width: 10, height: 10 }, shadowColor: 'black', shadowOpacity: 1, elevation: 3 }}>
 
                 <View style={{ alignSelf: "center" }}>
-                    <Text style={{ color: "black", fontFamily: "Friz-Quadrata-Regular", marginTop: 10, marginBottom: 10, fontSize: 25, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Ranqueada Solo/Duo</Text>
+                    <Text style={{ color: "black", fontFamily: "Friz-Quadrata-Regular", marginTop: 10, marginBottom: 10, fontSize: 27, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10, alignContent: "center", textAlign: "center" }}>Rank Solo/Duo</Text>
                 </View>
-                <View style={{ alignSelf: "center" }}>
+
+                <View style={{ flexDirection: "row", marginLeft: 20 }}>
                     {(this.props.solotier === "IRON") ?
                         (
-                            <Image source={require("../assets/ranks/IRON.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/IRON.png")} />
                         )
                         :
                         (
@@ -21,7 +22,7 @@ class Ranksolo extends Component {
                         )}
                     {(this.props.solotier === "BRONZE") ?
                         (
-                            <Image source={require("../assets/ranks/BRONZE.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/BRONZE.png")} />
                         )
                         :
                         (
@@ -29,7 +30,7 @@ class Ranksolo extends Component {
                         )}
                     {(this.props.solotier === "SILVER") ?
                         (
-                            <Image source={require("../assets/ranks/SILVER.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/SILVER.png")} />
                         )
                         :
                         (
@@ -37,7 +38,7 @@ class Ranksolo extends Component {
                         )}
                     {(this.props.solotier === "GOLD") ?
                         (
-                            <Image source={require("../assets/ranks/GOLD.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/GOLD.png")} />
                         )
                         :
                         (
@@ -45,7 +46,7 @@ class Ranksolo extends Component {
                         )}
                     {(this.props.solotier === "PLATINUM") ?
                         (
-                            <Image source={require("../assets/ranks/PLATINUM.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/PLATINUM.png")} />
                         )
                         :
                         (
@@ -53,7 +54,7 @@ class Ranksolo extends Component {
                         )}
                     {(this.props.solotier === "DIAMOND") ?
                         (
-                            <Image source={require("../assets/ranks/DIAMOND.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/DIAMOND.png")} />
                         )
                         :
                         (
@@ -61,7 +62,7 @@ class Ranksolo extends Component {
                         )}
                     {(this.props.solotier === "MASTER") ?
                         (
-                            <Image source={require("../assets/ranks/MASTER.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/MASTER.png")} />
                         )
                         :
                         (
@@ -69,7 +70,7 @@ class Ranksolo extends Component {
                         )}
                     {(this.props.solotier === "GRANDMASTER") ?
                         (
-                            <Image source={require("../assets/ranks/GRANDMASTER.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/GRANDMASTER.png")} />
                         )
                         :
                         (
@@ -77,44 +78,46 @@ class Ranksolo extends Component {
                         )}
                     {(this.props.solotier === "CHALLENGER") ?
                         (
-                            <Image source={require("../assets/ranks/CHALLENGER.png")} />
+                            <Image style={{ width: 140, height: 180 }} source={require("../assets/ranks/CHALLENGER.png")} />
                         )
                         :
                         (
                             <View />
                         )}
-                </View>
-                <View style={{ marginLeft: 30, flexDirection: "row", alignSelf: "center", marginRight: 30, marginTop: 10 }}>
-                    <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Divisão: </Text>
-                    <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solorank}</Text>
-                </View>
-                <View style={{ marginLeft: 30, flexDirection: "row", alignSelf: "center", marginRight: 30 }}>
-                    <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>PDL: </Text>
-                    <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.sololeaguepoints}</Text>
-                </View>
-                <View style={{ marginLeft: 30, flexDirection: "row", alignSelf: "center", marginRight: 30 }}>
-                    <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Vitórias: </Text>
-                    <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowins}</Text>
-                </View>
-                <View style={{ marginLeft: 30, flexDirection: "row", alignSelf: "center", marginRight: 30 }}>
-                    <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Derrotas: </Text>
-                    <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.sololosses}</Text>
-                </View>
-                <View style={{ marginLeft: 30, flexDirection: "row", alignSelf: "center", marginRight: 30 }}>
+                    <View>
 
-                    <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Winrate: </Text>
-                    {(this.props.winratesolo < 50) ?
-                        (
-                            <View>
-                                <Text style={{ color: "red", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowinrate + '%'}</Text>
-                            </View>
-                        )
-                        :
-                        (
-                            <View>
-                                <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowinrate + '%'}</Text>
-                            </View>
-                        )}
+                        <View style={{ marginLeft: 30, flexDirection: "row", marginRight: 30, marginTop: 15 }}>
+                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Divisão: </Text>
+                            <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solorank}</Text>
+                        </View>
+                        <View style={{ marginLeft: 50, flexDirection: "row", marginRight: 0 }}>
+                            <Text style={{ color: "green", fontSize: 20, marginLeft: 0, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Pontos: {this.props.sololeaguepoints}</Text>
+                        </View>
+                        <View style={{ marginLeft: 30, marginTop: 6, flexDirection: "row", marginRight: 30 }}>
+                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Vitórias: </Text>
+                            <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowins}</Text>
+                        </View>
+                        <View style={{ marginLeft: 30, flexDirection: "row", marginRight: 30 }}>
+                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Derrotas: </Text>
+                            <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.sololosses}</Text>
+                        </View>
+                        <View style={{ marginLeft: 30, flexDirection: "row", marginRight: 30 }}>
+
+                            <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Winrate: </Text>
+                            {(this.props.winratesolo < 50) ?
+                                (
+                                    <View>
+                                        <Text style={{ color: "red", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowinrate + '%'}</Text>
+                                    </View>
+                                )
+                                :
+                                (
+                                    <View>
+                                        <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowinrate + '%'}</Text>
+                                    </View>
+                                )}
+                        </View>
+                    </View>
                 </View>
             </View>
         )
