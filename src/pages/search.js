@@ -229,7 +229,7 @@ class Search extends Component {
                     {/* Logo */}
                     <Animatable.View animation="wobble" style={{ marginTop: 40, }}>
                         <TouchableWithoutFeedback onPress={this._contador} >
-                        <Image source={require("../assets/gnar.png")} style={{ alignSelf: "center", width: 100, height: 100, borderRadius: 100, borderWidth:2, borderColor: "black" }} />
+                        <Image source={require("../assets/gnar.png")} style={{ alignSelf: "center", width: 100, height: 100 }} />
                         </TouchableWithoutFeedback >
                     </Animatable.View>
 
