@@ -35,7 +35,6 @@ class Search extends Component {
             region: 'BR1',
             iconregion: 'BR',
             easteregg: 0,
-            apikey: '',
             champData: [],
             maestria1: [],
             maestria2: [],
@@ -46,16 +45,9 @@ class Search extends Component {
         }
     }
 
-    _setapi = async () => {
-        await AsyncStorage.setItem('@apikey', this.state.apikey)
-    }
 
     _reload = () => {
         this._search();
-    }
-
-    async componentDidMount() {
-        this.state.apikey = await AsyncStorage.getItem('@apikey')
     }
 
 
@@ -69,7 +61,7 @@ class Search extends Component {
             headers: {
                 "Origin": "https://developer.riotgames.com",
                 "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-                "X-Riot-Token": `${this.state.apikey}`,
+                "X-Riot-Token": 'RGAPI-434298ec-16e8-44ad-855e-dbedaefd5327',
                 "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"
             }
@@ -99,7 +91,7 @@ class Search extends Component {
             headers: {
                 "Origin": "https://developer.riotgames.com",
                 "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-                "X-Riot-Token": `${this.state.apikey}`,
+                "X-Riot-Token": 'RGAPI-434298ec-16e8-44ad-855e-dbedaefd5327',
                 "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"
             }
@@ -122,12 +114,12 @@ class Search extends Component {
 
     _searchChampions = async () => {
 
-        await fetch('https://'+ this.state.region + '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + this.state.summonerid, {
+        await fetch('https://' + this.state.region + '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + this.state.summonerid, {
             method: 'GET',
             headers: {
                 "Origin": "https://developer.riotgames.com",
                 "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-                "X-Riot-Token": `${this.state.apikey}`,
+                "X-Riot-Token": 'RGAPI-434298ec-16e8-44ad-855e-dbedaefd5327',
                 "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"
             }
@@ -224,17 +216,17 @@ class Search extends Component {
     render() {
         return (
             <ScrollView keyboardShouldPersistTaps={"never"} style={{ backgroundColor: "lightblue", flex: 1 }} showsVerticalScrollIndicator={false}>
-                <StatusBar backgroundColor="lightblue" />
                 <View>
+                <StatusBar translucent backgroundColor="transparent" />
                     {/* Logo */}
                     <Animatable.View animation="wobble" style={{ marginTop: 40, }}>
                         <TouchableWithoutFeedback onPress={this._contador} >
-                        <Image source={require("../assets/gnar.png")} style={{ alignSelf: "center", width: 100, height: 100 }} />
+                            <Image source={require("../assets/gnar.png")} style={{ alignSelf: "center", width: 100, height: 100 }} />
                         </TouchableWithoutFeedback >
                     </Animatable.View>
 
                     {/* Title */}
-                        <Text style={{ color: "white", fontSize: 35, textAlign: "center", marginTop: 20, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>League Checker</Text>
+                    <Text style={{ color: "white", fontSize: 35, textAlign: "center", marginTop: 20, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>League Checker</Text>
 
                     {/* Delete */}
                     <TouchableOpacity style={{ position: "relative", left: "82%", top: 54 }} onPress={this._reset} >
@@ -282,15 +274,17 @@ class Search extends Component {
                                         )
                                         :
                                         (
-                                            <Animatable.View style={{ marginTop: 0 }} animation="zoomInDown">
+                                            <View>
 
-                                                <View style={{ marginTop: 30, marginLeft: 0, marginRight: 0, backgroundColor: "rgba(255, 255, 255, 0.4)", marginBottom: 0, borderTopLeftRadius: 70, borderBottomLeftRadius: 70, borderTopRightRadius: 8, borderBottomRightRadius: 8 }}>
+                                                <View style={{ marginTop: 30, marginLeft: 0, marginRight: 0, marginBottom: 0, borderTopLeftRadius: 70, borderBottomLeftRadius: 70, borderTopRightRadius: 8, borderBottomRightRadius: 8 }}>
 
                                                     {/* Perfil */}
-                                                    <Profile regiao={this.state.region} nome={this.state.name} nivel={this.state.level} />
+                                                    <Animatable.View animation="bounceInRight">
+                                                        <Profile regiao={this.state.region} nome={this.state.name} nivel={this.state.level} />
+                                                    </Animatable.View>
 
                                                     {/* Rank Solo */}
-                                                    <Fragment>
+                                                    <Animatable.View animation="bounceInLeft">
                                                         {(this.state.ranksolo !== '') ?
                                                             (
                                                                 <Ranksolo solotier={this.state.ranksolo.tier} solorank={this.state.ranksolo.rank} sololeaguepoints={this.state.ranksolo.leaguePoints} solowins={this.state.ranksolo.wins} sololosses={this.state.ranksolo.losses} solowinrate={this.state.winratesolo} />
@@ -300,10 +294,10 @@ class Search extends Component {
                                                                 <View />
                                                             )
                                                         }
-                                                    </Fragment>
+                                                    </Animatable.View>
 
                                                     {/* Rank Flex */}
-                                                    <Fragment>
+                                                    <Animatable.View animation="bounceInRight">
                                                         {(this.state.rankflex !== '') ?
                                                             (
                                                                 <Rankflex flextier={this.state.rankflex.tier} flexrank={this.state.rankflex.rank} flexleaguepoints={this.state.rankflex.leaguePoints} flexwins={this.state.rankflex.wins} flexlosses={this.state.rankflex.losses} flexwinrate={this.state.winrateflex} />
@@ -312,10 +306,10 @@ class Search extends Component {
                                                             (
                                                                 <View />
                                                             )}
-                                                    </Fragment>
+                                                    </Animatable.View>
 
                                                     {/* Maestria */}
-                                                    <Fragment>
+                                                    <Animatable.View animation="bounceInLeft">
                                                         {(this.state.name !== 'Não encontrado') ?
                                                             (
                                                                 <Maestria maestria1={this.state.maestria1} maestria2={this.state.maestria2} maestria3={this.state.maestria3} champMaestria1={this.state.champMaestria1} champMaestria2={this.state.champMaestria2} champMaestria3={this.state.champMaestria3} />
@@ -325,9 +319,9 @@ class Search extends Component {
                                                                 <View />
                                                             )
                                                         }
-                                                    </Fragment>
+                                                    </Animatable.View>
                                                 </View>
-                                            </Animatable.View>
+                                            </View>
                                         )}
                                 </Fragment>
                             )
@@ -348,17 +342,10 @@ class Search extends Component {
                                     {(this.state.easteregg >= 10) ?
                                         (
                                             <View>
-                                                <View>
-                                                    <Image
-                                                        style={{ alignSelf: "center", marginTop: 20 }}
-                                                        source={require("../assets/easteregg.gif")}
-                                                    />
-                                                </View>
-                                                <View style={{ alignSelf: "center" }}>
-                                                    <Text style={{ color: "red", textAlign: "center", marginTop: 10 }}>FODA BIXO AINDA NÃO APROVARAM MEU PROJETO E PRECISO FICAR TROCANDO O TOKEN</Text>
-                                                    <TextInput style={{ textAlign: "center", backgroundColor: "white" }} onChangeText={(apikey) => this.setState({ apikey })} value={this.state.apikey}></TextInput>
-                                                    <Button mode="contained" color="blue" onPress={this._setapi}>Enviar</Button>
-                                                </View>
+                                                <Image
+                                                    style={{ alignSelf: "center", marginTop: 20 }}
+                                                    source={require("../assets/easteregg.gif")}
+                                                />
                                             </View>
                                         )
                                         :
