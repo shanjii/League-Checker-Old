@@ -5,10 +5,10 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 class Ranksolo extends Component {
     render() {
         return (
-            <View style={{ marginTop: 0, backgroundColor: "white", height: 250, marginLeft: 10, marginRight: 10, borderRadius: 30, marginBottom: 20, shadowOffset: { width: 10, height: 10 }, shadowColor: 'black', shadowOpacity: 1, elevation: 3 }}>
+            <View style={{ marginTop: 0, backgroundColor: "white", height: 250, marginLeft: 15, marginRight: 15, borderRadius: 20, marginBottom: 10, shadowOffset: { width: 10, height: 10 }, shadowColor: 'black', shadowOpacity: 1, elevation: 3 }}>
 
                 <View style={{ alignSelf: "center" }}>
-                    <Text style={{ color: "black", fontFamily: "Friz-Quadrata-Regular", marginTop: 10, marginBottom: 10, fontSize: 27, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10, alignContent: "center", textAlign: "center" }}>Rank Solo/Duo</Text>
+                    <Text style={{ color: "black", fontFamily: "Friz-Quadrata-Regular", marginTop: 10, marginBottom:10, fontSize: 27, alignContent: "center", textAlign: "center", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10  }}>Rank Solo/Duo</Text>
                 </View>
 
                 <View style={{ flexDirection: "row", marginLeft: 20 }}>
