@@ -10,7 +10,7 @@ class Profile extends Component {
     render() {
         return (
             <Fragment>
-                <View style={{ marginTop: 10, backgroundColor: "white", height:120, justifyContent: "center", marginLeft: 10, marginRight: "auto", marginBottom: 20, borderTopLeftRadius: 700, borderBottomLeftRadius: 700, borderTopRightRadius: 700, borderBottomRightRadius: 100, shadowOffset: { width: 10, height: 10 }, shadowColor: 'black', shadowOpacity: 1, elevation: 3}}>
+                <View style={{ marginTop: 10, backgroundColor: "rgba(255, 255, 255, 0.6)", height:120, justifyContent: "center", marginLeft: 10, marginRight: "auto", marginBottom: 10, borderWidth:0, borderColor: "black", borderTopLeftRadius: 700, borderBottomLeftRadius: 700, borderTopRightRadius: 700, borderBottomRightRadius: 100, shadowOffset: { width: 10, height: 10 }, shadowColor: 'black', shadowOpacity: 1, elevation: 3}}>
                     <View style={{flexDirection: "row", marginLeft: 10 }}>
                         <View>
 
@@ -23,7 +23,7 @@ class Profile extends Component {
                             <Text style={{ color: "black", marginTop: 20, fontFamily: "Friz-Quadrata-Regular", fontSize: 25, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.nome}</Text>
                             {(this.props.nome !== "Não encontrado") ?
                                 (
-                                    < Text style={{ color: "green", fontFamily: "Friz-Quadrata-Regular", fontSize: 20, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Nível: {this.props.nivel} </Text>
+                                    < Text style={{ color: "brown", fontFamily: "Friz-Quadrata-Regular", fontSize: 20, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Nível: {this.props.nivel} </Text>
 
                                 )
                                 :

@@ -5,7 +5,7 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 class Ranksolo extends Component {
     render() {
         return (
-            <View style={{ marginTop: 0, backgroundColor: "white", height: 250, marginLeft: 15, marginRight: 15, borderRadius: 20, marginBottom: 10, shadowOffset: { width: 10, height: 10 }, shadowColor: 'black', shadowOpacity: 1, elevation: 3 }}>
+            <View style={{ marginTop: 0, backgroundColor: "rgba(255, 255, 255, 0.6)", height: 250,borderWidth:0, borderColor: "black", marginLeft: 15, marginRight: 15, borderRadius: 10, marginBottom: 10, shadowOffset: { width: 10, height: 10 }, shadowColor: 'black', shadowOpacity: 1, elevation: 3 }}>
 
                 <View style={{ alignSelf: "center" }}>
                     <Text style={{ color: "black", fontFamily: "Friz-Quadrata-Regular", marginTop: 10, marginBottom:10, fontSize: 27, alignContent: "center", textAlign: "center", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10  }}>Rank Solo/Duo</Text>
@@ -88,18 +88,18 @@ class Ranksolo extends Component {
 
                         <View style={{ marginLeft: 30, flexDirection: "row", marginRight: 30, marginTop: 15 }}>
                             <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Divisão: </Text>
-                            <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solorank}</Text>
+                            <Text style={{ color: "brown", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solorank}</Text>
                         </View>
                         <View style={{ marginLeft: 30, flexDirection: "row", marginRight: 0 }}>
-                            <Text style={{ color: "green", fontSize: 20, marginLeft: 0, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Pontos: {this.props.sololeaguepoints}</Text>
+                            <Text style={{ color: "brown", fontSize: 20, marginLeft: 0, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Pontos: {this.props.sololeaguepoints}</Text>
                         </View>
                         <View style={{ marginLeft: 30, marginTop: 6, flexDirection: "row", marginRight: 30 }}>
                             <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Vitórias: </Text>
-                            <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowins}</Text>
+                            <Text style={{ color: "brown", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowins}</Text>
                         </View>
                         <View style={{ marginLeft: 30, flexDirection: "row", marginRight: 30 }}>
                             <Text style={{ color: "black", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Derrotas: </Text>
-                            <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.sololosses}</Text>
+                            <Text style={{ color: "brown", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.sololosses}</Text>
                         </View>
                         <View style={{ marginLeft: 30, flexDirection: "row", marginRight: 30 }}>
 
@@ -113,7 +113,7 @@ class Ranksolo extends Component {
                                 :
                                 (
                                     <View>
-                                        <Text style={{ color: "green", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowinrate + '%'}</Text>
+                                        <Text style={{ color: "brown", fontSize: 25, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>{this.props.solowinrate + '%'}</Text>
                                     </View>
                                 )}
                         </View>
