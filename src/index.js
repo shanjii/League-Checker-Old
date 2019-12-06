@@ -4,7 +4,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 
 
-const main = createStackNavigator({
+const main = createSwitchNavigator({
     Search: {
         screen: search
     }

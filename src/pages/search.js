@@ -51,10 +51,6 @@ class Search extends Component {
         this._search();
     }
 
-    componentDidMount = () =>{
-        
-    }
-
     _search = async () => {
         this._loadingstart();
         this.setState({ ranksolo: '' })
@@ -211,6 +207,7 @@ class Search extends Component {
         this.setState({ winratesolo: 0 })
         this.setState({ winrateflex: 0 })
         this.setState({ easteregg: 0 })
+        this.setState({ loading: 0})
     }
 
 
@@ -220,150 +217,154 @@ class Search extends Component {
     render() {
         return (
             <Fragment>
-                <ImageBackground style={{ width: "100%", height: deviceHeight }} source={require("../assets/background.jpg")}>
-                    <ScrollView keyboardShouldPersistTaps={"never"} showsVerticalScrollIndicator={false}>
-                        <View>
-                            <StatusBar translucent backgroundColor="transparent" />
-                            {/* Logo */}
-                            <Animatable.View animation="wobble" style={{ marginTop: 40, }}>
-                                <TouchableWithoutFeedback onPress={this._contador} >
-                                    <Image source={require("../assets/gnar.png")} style={{ alignSelf: "center", width: 100, height: 100 }} />
-                                </TouchableWithoutFeedback >
-                            </Animatable.View>
+                <Animatable.View animation ="zoomInUp">
 
-                            {/* Title */}
-                            <Text style={{ color: "white", fontSize: 35, textAlign: "center", marginTop: 20, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>League Checker</Text>
-
-                            {/* Delete */}
-                            <TouchableOpacity style={{ position: "relative", left: "82%", top: 54 }} onPress={this._reset} >
-                                <Image source={require("../assets/delete.png")} style={{ width: 25, height: 25 }} />
-                            </TouchableOpacity >
-
-                            {/* Input */}
+                    <ImageBackground fadeDuration={500} style={{ width: "100%", height: deviceHeight, backgroundColor: '#333333' }} source={require("../assets/background.jpg")}>
+                        <ScrollView keyboardShouldPersistTaps={"never"} showsVerticalScrollIndicator={false}>
                             <View>
-                                <TextInput
-                                    onChangeText={(text) => this.setState({ text })}
-                                    value={this.state.text}
-                                    style={{ fontSize: 20, textAlign: "center", fontFamily: "Friz-Quadrata-Regular", color: "white", borderBottomWidth: 1, borderBottomColor: "white", width: "60%", alignSelf: "center", marginTop: 10, height: 50, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}
-                                />
-                            </View>
+                                <StatusBar translucent backgroundColor="transparent" />
+                                {/* Logo */}
+                                <Animatable.View delay={600} animation="wobble" style={{ marginTop: 40, }}>
+                                    <TouchableWithoutFeedback onPress={this._contador} >
+                                        <Image source={require("../assets/gnar.png")} style={{ alignSelf: "center", width: 100, height: 100 }} />
+                                    </TouchableWithoutFeedback >
+                                </Animatable.View>
 
-                            {/* Search Button */}
-                            <Animatable.View animation="rubberBand" style={{ marginTop: 30, width: 200, alignSelf: "center", }}>
-                                {(this.state.text !== '') ?
-                                    (
-                                        <Button color="lightgrey" onPress={this._search} mode="contained">
-                                            Pesquisar
+                                {/* Title */}
+                                <Text style={{ color: "white", fontSize: 35, textAlign: "center", marginTop: 20, fontFamily: "Friz-Quadrata-Regular", textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>League Checker</Text>
+
+                                {/* Delete */}
+                                <TouchableOpacity style={{ position: "relative", left: "82%", top: 54 }} onPress={this._reset} >
+                                    <Image source={require("../assets/delete.png")} style={{ width: 25, height: 25 }} />
+                                </TouchableOpacity >
+
+                                {/* Input */}
+                                <View>
+                                    <TextInput
+                                        onChangeText={(text) => this.setState({ text })}
+                                        value={this.state.text}
+                                        style={{ fontSize: 20, textAlign: "center", fontFamily: "Friz-Quadrata-Regular", color: "white", borderBottomWidth: 1, borderBottomColor: "white", width: "60%", alignSelf: "center", marginTop: 10, height: 50, textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}
+                                    />
+                                </View>
+
+                                {/* Search Button */}
+                                <Animatable.View delay={300} animation="rubberBand" style={{ marginTop: 30, width: 200, alignSelf: "center", }}>
+                                    {(this.state.text !== '') ?
+                                        (
+                                            <Button color="lightgrey" onPress={this._search} mode="contained">
+                                                Pesquisar
                                             </Button>
-                                    ) :
-                                    (
-                                        <Text style={{ color: "white", fontSize: 15, textAlign: "center", marginTop: 0, textShadowColor: 'rgba(0, 0, 0, 0.5)', fontFamily: "Friz-Quadrata-Regular", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Digite o nome do Invocador</Text>
+                                        ) :
+                                        (
+                                            <Text style={{ color: "white", fontSize: 15, textAlign: "center", marginTop: 0, textShadowColor: 'rgba(0, 0, 0, 0.5)', fontFamily: "Friz-Quadrata-Regular", textShadowOffset: { width: 2, height: 1 }, textShadowRadius: 10 }}>Digite o nome do Invocador</Text>
 
-                                    )}
-                            </Animatable.View>
+                                        )}
+                                </Animatable.View>
 
-                            {/* Region */}
-                            <Region regionBR={this._setregionBR} regionEUW={this._setregionEUW} icon={this.state.iconregion} />
+                                {/* Region */}
+                                <Region regionBR={this._setregionBR} regionEUW={this._setregionEUW} icon={this.state.iconregion} />
 
-                            {/* Listagens */}
-                            <Fragment>
-                                {(this.state.name !== '') ?
-                                    (
+                                {/* Listagens */}
+                                <Fragment>
+                                    {(this.state.name !== '') ?
+                                        (
 
-                                        // Informações do usuário
-                                        <Fragment>
-                                            {(this.state.loading === 1) ?
-                                                (
-                                                    <View style={{ marginTop: 20 }}>
-                                                        <ActivityIndicator color="white" size="large" />
-                                                    </View>
-                                                )
-                                                :
-                                                (
-                                                    <View>
-
-                                                        <View style={{ marginTop: 30, marginLeft: 0, marginRight: 0, marginBottom: 0, borderTopLeftRadius: 70, borderBottomLeftRadius: 70, borderTopRightRadius: 8, borderBottomRightRadius: 8 }}>
-
-                                                            {/* Perfil */}
-                                                            <Animatable.View animation="bounceInRight">
-                                                                <Profile regiao={this.state.region} nome={this.state.name} nivel={this.state.level} />
-                                                            </Animatable.View>
-
-                                                            {/* Rank Solo */}
-                                                            <Animatable.View animation="bounceInLeft">
-                                                                {(this.state.ranksolo !== '') ?
-                                                                    (
-                                                                        <Ranksolo solotier={this.state.ranksolo.tier} solorank={this.state.ranksolo.rank} sololeaguepoints={this.state.ranksolo.leaguePoints} solowins={this.state.ranksolo.wins} sololosses={this.state.ranksolo.losses} solowinrate={this.state.winratesolo} />
-                                                                    )
-                                                                    :
-                                                                    (
-                                                                        <View />
-                                                                    )
-                                                                }
-                                                            </Animatable.View>
-
-                                                            {/* Rank Flex */}
-                                                            <Animatable.View animation="bounceInRight">
-                                                                {(this.state.rankflex !== '') ?
-                                                                    (
-                                                                        <Rankflex flextier={this.state.rankflex.tier} flexrank={this.state.rankflex.rank} flexleaguepoints={this.state.rankflex.leaguePoints} flexwins={this.state.rankflex.wins} flexlosses={this.state.rankflex.losses} flexwinrate={this.state.winrateflex} />
-                                                                    )
-                                                                    :
-                                                                    (
-                                                                        <View />
-                                                                    )}
-                                                            </Animatable.View>
-
-                                                            {/* Maestria */}
-                                                            <Animatable.View animation="bounceInLeft">
-                                                                {(this.state.name !== 'Não encontrado') ?
-                                                                    (
-                                                                        <Maestria maestria1={this.state.maestria1} maestria2={this.state.maestria2} maestria3={this.state.maestria3} champMaestria1={this.state.champMaestria1} champMaestria2={this.state.champMaestria2} champMaestria3={this.state.champMaestria3} />
-                                                                    )
-                                                                    :
-                                                                    (
-                                                                        <View />
-                                                                    )
-                                                                }
-                                                            </Animatable.View>
+                                            // Informações do usuário
+                                            <Fragment>
+                                                {(this.state.loading === 1) ?
+                                                    (
+                                                        <View style={{ marginTop: 20 }}>
+                                                            <ActivityIndicator color="white" size="large" />
                                                         </View>
-                                                    </View>
-                                                )}
-                                        </Fragment>
-                                    )
-                                    :
-                                    (
-                                        // Token Input
-                                        <Fragment>
-                                            {(this.state.loading === 1) ?
-                                                (
-                                                    <View style={{ marginTop: 20 }}>
-                                                        <ActivityIndicator color="white" size="large" />
-                                                    </View>
-                                                )
-                                                :
-                                                (
-                                                    <View />
-                                                )}
-                                            {(this.state.easteregg >= 10) ?
-                                                (
-                                                    <View>
-                                                        <Image
-                                                            style={{ alignSelf: "center", marginTop: 20 }}
-                                                            source={require("../assets/easteregg.gif")}
-                                                        />
-                                                    </View>
-                                                )
-                                                :
-                                                (
-                                                    <View />
-                                                )}
-                                        </Fragment>
-                                    )}
-                            </Fragment>
-                        </View>
-                    </ScrollView>
-                </ImageBackground >
+                                                    )
+                                                    :
+                                                    (
+                                                        <View>
+
+                                                            <View style={{ marginTop: 30, marginLeft: 0, marginRight: 0, marginBottom: 0, borderTopLeftRadius: 70, borderBottomLeftRadius: 70, borderTopRightRadius: 8, borderBottomRightRadius: 8 }}>
+
+                                                                {/* Perfil */}
+                                                                <Animatable.View duration={1500} animation="bounceInRight">
+                                                                    <Profile regiao={this.state.region} nome={this.state.name} nivel={this.state.level} />
+                                                                </Animatable.View>
+
+                                                                {/* Rank Solo */}
+                                                                <Animatable.View duration={1500} delay={500} animation="bounceInLeft">
+                                                                    {(this.state.ranksolo !== '') ?
+                                                                        (
+                                                                            <Ranksolo solotier={this.state.ranksolo.tier} solorank={this.state.ranksolo.rank} sololeaguepoints={this.state.ranksolo.leaguePoints} solowins={this.state.ranksolo.wins} sololosses={this.state.ranksolo.losses} solowinrate={this.state.winratesolo} />
+                                                                        )
+                                                                        :
+                                                                        (
+                                                                            <View />
+                                                                        )
+                                                                    }
+                                                                </Animatable.View>
+
+                                                                {/* Rank Flex */}
+                                                                <Animatable.View duration={1500} delay={1000} animation="bounceInRight">
+                                                                    {(this.state.rankflex !== '') ?
+                                                                        (
+                                                                            <Rankflex flextier={this.state.rankflex.tier} flexrank={this.state.rankflex.rank} flexleaguepoints={this.state.rankflex.leaguePoints} flexwins={this.state.rankflex.wins} flexlosses={this.state.rankflex.losses} flexwinrate={this.state.winrateflex} />
+                                                                        )
+                                                                        :
+                                                                        (
+                                                                            <View />
+                                                                        )}
+                                                                </Animatable.View>
+
+                                                                {/* Maestria */}
+                                                                <Animatable.View duration={1500} delay={1500} animation="bounceInLeft">
+                                                                    {(this.state.name !== 'Não encontrado') ?
+                                                                        (
+                                                                            <Maestria maestria1={this.state.maestria1} maestria2={this.state.maestria2} maestria3={this.state.maestria3} champMaestria1={this.state.champMaestria1} champMaestria2={this.state.champMaestria2} champMaestria3={this.state.champMaestria3} />
+                                                                        )
+                                                                        :
+                                                                        (
+                                                                            <View />
+                                                                        )
+                                                                    }
+                                                                </Animatable.View>
+                                                            </View>
+                                                        </View>
+                                                    )}
+                                            </Fragment>
+                                        )
+                                        :
+                                        (
+                                            // Token Input
+                                            <Fragment>
+                                                {(this.state.loading === 1) ?
+                                                    (
+                                                        <View style={{ marginTop: 20 }}>
+                                                            <ActivityIndicator color="white" size="large" />
+                                                        </View>
+                                                    )
+                                                    :
+                                                    (
+                                                        <View />
+                                                    )}
+                                                {(this.state.easteregg >= 10) ?
+                                                    (
+                                                        <View>
+                                                            <Image
+                                                                style={{ alignSelf: "center", marginTop: 20 }}
+                                                                source={require("../assets/easteregg.gif")}
+                                                            />
+                                                        </View>
+                                                    )
+                                                    :
+                                                    (
+                                                        <View />
+                                                    )}
+                                            </Fragment>
+                                        )}
+                                </Fragment>
+                            </View>
+                        </ScrollView>
+                    </ImageBackground >
+                </Animatable.View>
+
             </Fragment>
         );
     }

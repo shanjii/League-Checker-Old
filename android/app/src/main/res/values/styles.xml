@@ -6,10 +6,10 @@
 			@drawable/background_splash
 		</item>
 		<item name="colorPrimaryDark">
-			#101010	
+			#333333	
 		</item>
 		<item name="android:textColor">
-			#101010	
+			#333333	
 		</item>
 	</style>
 </resources>
