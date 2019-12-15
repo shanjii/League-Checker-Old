@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { Text, View, Image } from 'react-native';
 
-class Profile extends Component {
 
+class Profile extends Component {
+    
     constructor() {
         super();
     }
@@ -16,7 +17,7 @@ class Profile extends Component {
 
                             <Image
                                 style={{ width: 100, height: 100, borderRadius: 100, borderWidth: 2, borderColor: "black" }}
-                                source={{ uri: 'https://avatar.leagueoflegends.com/' + this.props.regiao + '/' + this.props.nome + '.png' }}
+                                source={{ uri: 'http://avatar.leagueoflegends.com/' + this.props.regiao + '/' + this.props.nome.replace(' ', '%20') + '.png' }}
                             />
                         </View>
                         <View style={{marginLeft: 10, marginRight:20}}>

@@ -10,7 +10,7 @@ import Ranksolo from '../components/ranksolo'
 import Rankflex from '../components/rankflex'
 import Maestria from '../components/maestria'
 import * as Animatable from 'react-native-animatable';
-const deviceHeight = Dimensions.get('screen').height;
+const deviceHeight = Dimensions.get('window').height;
 
 
 
@@ -217,7 +217,7 @@ class Search extends Component {
     render() {
         return (
             <Fragment>
-                <Animatable.View animation ="zoomInUp">
+                <Animatable.View style={{backgroundColor: 'black'}} animation ="zoomIn">
 
                     <ImageBackground fadeDuration={500} style={{ width: "100%", height: deviceHeight, backgroundColor: '#333333' }} source={require("../assets/background.jpg")}>
                         <ScrollView keyboardShouldPersistTaps={"never"} showsVerticalScrollIndicator={false}>
